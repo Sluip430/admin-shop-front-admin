@@ -9,12 +9,16 @@ const notificationPopup = document.querySelector('.notification_popup');
 
 async function changePassword() {
     try {
+        const paragraph = document.URL;
+        const regex = 'token=';
+        const found = paragraph.search(regex);
+        const token = paragraph.slice(found + regex.length);
         const response = await axios.post('http://localhost:3000/authorization/change-password', {
           password: passwordInput.value
         },
         {
             headers : {
-                token : document.URL.slice(48)
+                token
             }
         });
         notificationPopup.style.visibility = 'visible';
