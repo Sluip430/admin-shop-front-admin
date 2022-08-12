@@ -11,7 +11,10 @@ const filename = (ext) => isDev ? `[name].${ext}` : `[name].[contenthash].${ext}
 module.exports = {
     context: path.resolve(__dirname, 'src'),
     mode: 'development',
-    entry: './js/index.js',
+    entry: { 
+        main: './js/index.js',
+        forgotPassword: './js/forgotPassword.js'
+    },
     output: {
         filename: `./js/${filename('js')}`,
         path: path.resolve(__dirname, 'dist'),
@@ -22,7 +25,16 @@ module.exports = {
             filename: 'index.html',
             minify: {
                 collapseWhitespace: isProd
-            }
+            },
+            chunks: ['main']
+        }),
+        new HTMLWebpackPlugin({
+            template: path.resolve('src/forgotPassword.html'),
+            filename: 'forgotPassword.html',
+            minify: {
+                collapseWhitespace: isProd
+            },
+            chunks: ['forgotPassword']
         }),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({

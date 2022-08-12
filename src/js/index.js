@@ -14,10 +14,15 @@ const emailInputSignIn = document.querySelector('.email_input_sign_in');
 const passwordInputSignIn = document.querySelector('.password_input_sign_in');
 const notificationText = document.querySelector('.notification_text');
 const notificationPopup = document.querySelector('.notification_popup');
+const forgotPassTitle = document.querySelector('.forgot_pass_title');
+const forgotPassEmail = document.querySelector('.forgot_password_email');
+const restorePasswordButton = document.querySelector('.restore_password_button');
+const emailInputForgotPassMail = document.querySelector('.email_input_forgot_password_mail');
 
 function showSignUp () {
   if (signUp.style.visibility === 'hidden'){
     signIn.style.visibility = 'hidden';
+    forgotPassEmail.style.visibility = 'hidden';
     signUp.style.visibility = 'visible';
   } else {
     signUp.style.visibility = 'hidden';
@@ -27,10 +32,16 @@ function showSignUp () {
 function showSignIn () {
   if (signIn.style.visibility === 'hidden'){
     signUp.style.visibility = 'hidden';
+    forgotPassEmail.style.visibility = 'hidden';
     signIn.style.visibility = 'visible';
   } else {
     signIn.style.visibility = 'hidden';
   }
+}
+
+function showForgotPasswordEmail () {
+  signIn.style.visibility = 'hidden';
+  forgotPassEmail.style.visibility = 'visible';
 }
 
 async function signUpReq () {
@@ -80,7 +91,36 @@ async function signInReq () {
   }
 }
 
+async function restorePasswordMail () {
+  try {
+    const response = await axios.post('http://localhost:3000/authorization/forgot-password', {
+      email: emailInputForgotPassMail.value
+    });
+    notificationPopup.style.visibility = 'visible';
+    notificationText.innerHTML = `${response.data}`;
+    notificationPopup.style.background = 'green';
+  } catch (error) {
+    console.log(error);
+    notificationPopup.style.visibility = 'visible';
+    notificationText.innerHTML = `${error.response.data.message}`;
+    notificationPopup.style.background = 'red';
+    setTimeout(function() {
+      notificationPopup.style.visibility = 'hidden';
+    }, 5000);
+  }
+}
+
+function initProject () {
+  signIn.style.visibility = 'hidden';
+  signUp.style.visibility = 'hidden';
+  forgotPassEmail.style.visibility = 'hidden';
+}
+
+initProject();
+
 signUpBtn.addEventListener('click' , signUpReq);
 signInBtn.addEventListener('click' , signInReq);
 headerSignUp.addEventListener('click' , showSignUp);
 headerSignIn.addEventListener('click' , showSignIn);
+forgotPassTitle.addEventListener('click' , showForgotPasswordEmail);
+restorePasswordButton.addEventListener('click' , restorePasswordMail);
