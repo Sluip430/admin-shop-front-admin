@@ -46,7 +46,7 @@ function showForgotPasswordEmail () {
 
 async function signUpReq () {
   try {
-    const response = await axios.post('http://localhost:3000/authorization/sign-up', {
+    const response = await axios.post('https://admin-shop-back.herokuapp.com/authorization/sign-up', {
       email : emailInputSignUp.value,
       password : passwordInputSignUp.value,
       phone : phoneInput.value,
@@ -70,7 +70,7 @@ async function signUpReq () {
 
 async function signInReq () {
   try {
-    const response = await axios.post('http://localhost:3000/authorization/sign-in', {
+    const response = await axios.post('https://admin-shop-back.herokuapp.com/authorization/sign-in', {
       email : emailInputSignIn.value,
       password : passwordInputSignIn.value,
     })
@@ -93,7 +93,7 @@ async function signInReq () {
 
 async function restorePasswordMail () {
   try {
-    const response = await axios.post('http://localhost:3000/authorization/forgot-password', {
+    const response = await axios.post('https://admin-shop-back.herokuapp.com/authorization/forgot-password', {
       email: emailInputForgotPassMail.value
     });
     notificationPopup.style.visibility = 'visible';

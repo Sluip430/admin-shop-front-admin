@@ -13,7 +13,7 @@ async function changePassword() {
         const regex = 'token=';
         const found = paragraph.search(regex);
         const token = paragraph.slice(found + regex.length);
-        const response = await axios.post('http://localhost:3000/authorization/change-password', {
+        const response = await axios.post('https://admin-shop-back.herokuapp.com/authorization/change-password', {
           password: passwordInput.value
         },
         {
