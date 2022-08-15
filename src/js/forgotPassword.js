@@ -24,7 +24,7 @@ async function changePassword() {
         notificationPopup.style.visibility = 'visible';
         notificationText.innerHTML = `${response.data}`;
         notificationPopup.style.background = 'green';
-        window.location.href = 'http://localhost:4200';
+        window.location.href = 'https://sluip430.github.io/admin-shop-front-admin/dist/index.html';
       } catch (error) {
         console.log(error);
         notificationPopup.style.visibility = 'visible';
