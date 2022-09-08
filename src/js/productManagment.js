@@ -3,10 +3,11 @@ import axios from 'axios';
 
 const productTable = document.querySelector('.product_table');
 const addProductBtn = document.querySelector('.add_product');
+const link = 'http://localhost:3000'
 
 async function getProducts() {
     try {
-      const response = await axios.get('https://admin-shop-back.herokuapp.com/product');
+      const response = await axios.get(`${link}/product`);
       return response.data.data;
     } catch (error) {
       console.error(error);

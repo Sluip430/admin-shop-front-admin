@@ -15,7 +15,9 @@ module.exports = {
         main: './js/index.js',
         forgotPassword: './js/forgotPassword.js',
         productManagment: './js/productManagment.js',
-        addProduct: './js/addProduct.js'
+        addProduct: './js/addProduct.js',
+        clientManagment: './js/clientManagment.js',
+        orders: './js/orders.js'
     },
     output: {
         filename: `./js/${filename('js')}`,
@@ -53,6 +55,22 @@ module.exports = {
                 collapseWhitespace: isProd
             },
             chunks: ['addProduct']
+        }),
+        new HTMLWebpackPlugin({
+            template: path.resolve('src/clientManagment.html'),
+            filename: 'clientManagment.html',
+            minify: {
+                collapseWhitespace: isProd
+            },
+            chunks: ['clientManagment']
+        }),
+        new HTMLWebpackPlugin({
+            template: path.resolve('src/orders.html'),
+            filename: 'orders.html',
+            minify: {
+                collapseWhitespace: isProd
+            },
+            chunks: ['orders']
         }),
         new CleanWebpackPlugin(),
         new MiniCssExtractPlugin({

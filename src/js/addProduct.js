@@ -21,10 +21,11 @@ const addSubCategorySubmitButton = document.querySelector('.add_sub_category_sub
 const addCategorySubmitButton = document.querySelector('.add_category_submit_button');
 const characteristicAddButton = document.querySelector('.characteristic_add_button');
 const characteristicAndValue = document.querySelector('.characteristic_and_value');
+const link = 'http://localhost:3000';
 
 async function getCategory(){
     try{
-        const response = await axios.get('https://admin-shop-back.herokuapp.com/category')
+        const response = await axios.get(`${link}/category`)
         return response.data.data;
     } catch (error) {
         console.log(error);
@@ -33,7 +34,7 @@ async function getCategory(){
 
 async function getSubCategoryByCategoryId(id){
     try{
-        const response = await axios.get(`https://admin-shop-back.herokuapp.com/sub-category?categoryId=${id}`);
+        const response = await axios.get(`${link}/sub-category?categoryId=${id}`);
         return response.data.data;
     } catch (error) {
         console.log(error);
@@ -90,7 +91,7 @@ async function showSubCategoryCharact() {
 
 async function getSubCategoryById (id) {
     try{
-        const response = await axios.get(`https://admin-shop-back.herokuapp.com/sub-category?id=${id}`);
+        const response = await axios.get(`${link}/sub-category?id=${id}`);
         return response.data.data[0];
     } catch (error) {
         console.log(error);
@@ -118,7 +119,7 @@ async function createProduct () {
             headers: { "Content-Type": "multipart/form-data" },
         });
         if (response.status === 201) {
-            window.location.href = 'https://sluip430.github.io/admin-shop-front-admin/dist/productManagment.html';
+            //window.location.href = 'https://sluip430.github.io/admin-shop-front-admin/dist/productManagment.html';
         }
         await addCaracteristicToProduct(response.data.id);
     } catch (error) {
@@ -138,7 +139,7 @@ function showAddCategory(){
 
 async function createCategory () {
     try{
-        const response = await axios.post(`https://admin-shop-back.herokuapp.com/category`, {
+        const response = await axios.post(`${link}/category`, {
             name: addInputCategory.value,
         });
         fillCategory();
@@ -152,7 +153,7 @@ async function createSubCategory () {
     try{
         const categoryId = document.querySelector(`.${selectCategory.value}`).id;
         console.log(categoryId);
-        const response = await axios.post(`https://admin-shop-back.herokuapp.com/sub-category`, {
+        const response = await axios.post(`${link}/sub-category`, {
             categoryId: Number(categoryId),
             name: addInputSubCategory.value,
         });
@@ -186,7 +187,7 @@ async function addCaracteristicToProduct (productId) {
 
 async function createValueForCharacteristic (productId, characteristicId, value) {
     try{
-        const response = await axios.post(`https://admin-shop-back.herokuapp.com/charact-value`, {
+        const response = await axios.post(`${link}/charact-value`, {
             productId: Number(productId),
             characteristicId: Number(characteristicId),
             value
@@ -205,7 +206,7 @@ async function addCharValue (div, productId) {
 
 async function createCharacteristic (name, subCategoryId) {
     try{
-        const response = await axios.post(`https://admin-shop-back.herokuapp.com/characteristics`, {
+        const response = await axios.post(`${link}/characteristics`, {
             name,
             subCategoryId: Number(subCategoryId),
         });

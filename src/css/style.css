@@ -3,8 +3,9 @@ body{
   margin: 0;
 }
 .header{
-background-color: grey;
-font-size: 25px;
+background-color: #04AA6D;
+font-family: 'Montserrat', sans-serif;
+font-size: 20px;
 }
 
 *, *::before, *::after{
@@ -278,4 +279,96 @@ a:-webkit-any-link {
 
 .characteristic_and_value_inputs {
  margin: 10px;
+}
+
+/* ClientManagment */
+
+.user_table {
+  border-collapse: collapse;
+  width: 100%;
+  text-align: center;
+  margin-left: 100px;
+}
+
+.user_table th {
+  width: 120px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #04AA6D;
+  color: white;
+  cursor: pointer;
+}
+
+.user_table td, .user_table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.main_user_table {
+  margin: 0 auto;
+}
+
+.user_popup {
+  position: absolute;
+  top: 40vh;
+  left: 100vh;
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.user_popup div{
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.order_table th {
+  width: 120px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #04AA6D;
+  color: white;
+  cursor: pointer;
+}
+
+.order_table td, .user_table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.order_table {
+  margin: 0 auto;
+}
+
+.order_user_table {
+  margin: 0 auto;
+}
+
+.order_popup{
+  position: absolute;
+  margin-left: 20vh;
+}
+
+.order_main_table th{
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #04AA6D;
+  color: white;
+  cursor: pointer;
+}
+
+.order_main_table td, .order_main_table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.order_main_table {
+  margin: 0 auto;
+  margin-right: 60px;
+}
+
+.orders_count {
+  font-weight: 700;
+  font-size: 20px;
+  border: 1px solid #ddd;
+  padding: 8px;
 }
