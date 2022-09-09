@@ -5,11 +5,20 @@ const orderInProgress = document.querySelector('.order_in_progress');
 const orderFinished = document.querySelector('.order_finished');
 const orderClosed = document.querySelector('.order_closed');
 const orderTable = document.querySelector('.order_main_table');
-const CLOSED = 'Closed'
+const orderUpdateDiv = document.querySelector('.order_update');
+const inputAddress = document.querySelector('.input_update_address');
+const inputComment = document.querySelector('.input_update_comment');
+const inputBonus = document.querySelector('.input_update_bonus');
+const inputTypeOfPayment = document.querySelector('.input_update_type');
+const inputStatus = document.querySelector('.input_update_status');
+const updateButton = document.querySelector('.order_update_button');
+const closeButton = document.querySelector('.order_update_close');
+let currentOpenOrderId;
+const link = 'https://admin-shop-back.herokuapp.com';
 
 async function getOrders(status) {
     try {
-        const response = await axios.get(`http://localhost:3000/order?status=${status}`);
+        const response = await axios.get(`${link}/order?status=${status}`);
         return response.data.data;
     } catch (error) {
         console.error(error);
@@ -65,13 +74,59 @@ async function fillOrdersClosed() {
     orders.forEach(item => createRow(item));
 }
 
-async function fillOrdersBy() {
-    const status = 'Closed';
-    const orders = await getOrders(status);
-    clearTable();
-    orders.forEach(item => createRow(item));
+async function getOrderById(id) {
+    try {
+        const response = await axios.get(`${link}/order?id=${id}`);
+        return response.data.data[0];
+    } catch (error) {
+        console.error(error);
+    }
+}
+function fillOrderUpdate(data){
+    inputAddress.value = data.address;
+    inputComment.value = data.comment;
+    inputBonus.value = data.bonus;
+    inputTypeOfPayment.value = data.type_of_payment;
+    inputStatus.value = data.status;
+    orderUpdateDiv.style.visibility = 'visible';
+}
+
+async function showUpdateOrderMenu(e) {
+const orderId = e.target.parentNode.id;
+currentOpenOrderId = orderId;
+const order = await getOrderById(orderId);
+fillOrderUpdate(order)
+}
+
+function initProject () {
+    closePopUp();
+}
+
+function closePopUp () {
+    orderUpdateDiv.style.visibility = 'hidden';
+}
+
+async function updateOrder() {
+    try {
+        await axios.put(`${link}/order`, {
+            id: Number(currentOpenOrderId),
+            address: inputAddress.value,
+            status: inputStatus.value,
+            comment: inputComment.value,
+            bonus: inputBonus.value,
+            type_of_payment: inputTypeOfPayment.value,
+        });
+        closePopUp();
+    } catch (error) {
+        console.error(error);
+    }
 }
 
 orderInProgress.addEventListener('click', fillOrdersInProgress);
 orderFinished.addEventListener('click', fillOrdersFinished);
 orderClosed.addEventListener('click', fillOrdersClosed);
+orderTable.addEventListener('click', showUpdateOrderMenu);
+updateButton.addEventListener('click', updateOrder);
+closeButton.addEventListener('click', closePopUp);
+
+initProject();

@@ -16,8 +16,8 @@
         <div class="header_conteiner">
             <nav class="header_nav">
                 <a href='https://sluip430.github.io/admin-shop-front-admin/dist/productManagment.html'>Product managment |</a>
-                <a href='http://localhost:4200/clientManagment.html'>Управление клиентами |</a>
-                <a href='http://localhost:4200/orders.html'>Заказы</a>
+                <a href='https://sluip430.github.io/admin-shop-front-admin/dist/clientManagment.html'>Управление клиентами |</a>
+                <a href='https://sluip430.github.io/admin-shop-front-admin/dist/orders.html'>Заказы</a>
             </nav>
             <div class="header_login">
                 <p class="header_sign_up">Sign Up</p>
@@ -29,14 +29,14 @@
         <div class="add_main_container">
             <div class="add_main_info">
                 <div class="add_main_inputs">
-                    <input class="add_input_name" type="text" placeholder="Name">
-                    <input class="add_input_count" type="text" placeholder="Count">
-                    <input class="add_input_discount" type="text" placeholder="Discount">
+                    <input class="add_input_name" type="text" placeholder="Name" pattern="[0-9, A-Z, a-z]{3,20}">
+                    <input class="add_input_count" type="text" placeholder="Count" pattern="[0-9]{1,20}">
+                    <input class="add_input_discount" type="text" placeholder="Discount" pattern="[0-9]{1,20}">
                     <div class="add_price" style="margin: 0;">
-                        <input class="add_input_price" type="text" style="width: 230px;" placeholder="Price">
+                        <input class="add_input_price" type="text" style="width: 230px;" placeholder="Price" pattern="[0-9]{1,20}">
                         <input class="add_input_currency" type="text" style="width: 85px;"  placeholder="Currency">
                     </div>
-                    <input class="add_input_discription" style = 'height: 150px;'type="text" placeholder="Description">
+                    <input class="add_input_discription" style = 'height: 150px;'type="text" placeholder="Description" pattern="[0-9, A-Z, a-z]{3,400}">
                 </div>
                 <div class="add_image">
                     <label for=".add_input_image"> Choose image</label>

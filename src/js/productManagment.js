@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const productTable = document.querySelector('.product_table');
 const addProductBtn = document.querySelector('.add_product');
-const link = 'http://localhost:3000'
+const link = 'https://admin-shop-back.herokuapp.com';
 
 async function getProducts() {
     try {

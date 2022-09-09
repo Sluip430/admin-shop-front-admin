@@ -22,6 +22,7 @@ const orderHeadBonus = document.querySelector('.order_table_header_bonus');
 const orderHeadComment = document.querySelector('.order_table_header_comment');
 const orderHeadType = document.querySelector('.order_table_header_type_of_payment');
 let currentUserIdOrders;
+const link = 'https://admin-shop-back.herokuapp.com';
 
 function createRowInTable (item) {
   console.log(item);
@@ -54,7 +55,7 @@ async function banUser(event) {
 
 async function updateUser(data){
   try {
-    const response = await axios.put('http://localhost:3000/user', data);
+    const response = await axios.put(`${link}/user`, data);
     return response.data.data;
   } catch (error) {
     console.error(error);
@@ -63,7 +64,7 @@ async function updateUser(data){
 
 async function getUsers() {
     try {
-      const response = await axios.get('http://localhost:3000/user?isBanned=false');
+      const response = await axios.get(`${link}/user?isBanned=false`);
       return response.data.data;
     } catch (error) {
       console.error(error);
@@ -72,7 +73,7 @@ async function getUsers() {
 
 async function getUserById(id) {
     try {
-      const response = await axios.get(`http://localhost:3000/user?id=${id}`);
+      const response = await axios.get(`${link}/user?id=${id}`);
       return response.data.data;
     } catch (error) {
       console.error(error);

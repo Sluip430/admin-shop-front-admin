@@ -21,7 +21,7 @@ const addSubCategorySubmitButton = document.querySelector('.add_sub_category_sub
 const addCategorySubmitButton = document.querySelector('.add_category_submit_button');
 const characteristicAddButton = document.querySelector('.characteristic_add_button');
 const characteristicAndValue = document.querySelector('.characteristic_and_value');
-const link = 'http://localhost:3000';
+const link = 'https://admin-shop-back.herokuapp.com';
 
 async function getCategory(){
     try{
@@ -105,7 +105,7 @@ async function createProduct () {
         const data = new FormData();
         data.append('name', `${inputName.value}`);
         data.append('price', `${inputPrice.value}`);
-        data.append('currency', `${inputCurrency.value}`);
+        data.append('currencyId', `1`);
         data.append('description', `${inputDescription.value}`);
         data.append('count', `${inputCount.value}`);
         data.append('discount', `${inputDiscount.value}`);
@@ -114,7 +114,7 @@ async function createProduct () {
         data.append('image', inputImage.files[0]);
         const response = await axios({
             method: "post",
-            url: 'https://admin-shop-back.herokuapp.com/product',
+            url: `${link}/product`,
             data,
             headers: { "Content-Type": "multipart/form-data" },
         });
